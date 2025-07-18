@@ -34,7 +34,7 @@ const Projects = () => {
       title: 'HTML Streaming Website',
       description: 'A modern HTML-based streaming platform with responsive design, featuring movie discovery, advanced search, and seamless video playback experience.',
       tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-      image: './public/Html.png',
+      image: './assets/Html.png',
       github: 'https://github.com/ArjunZebua/ARJUN_ZEBUA.git',
       // live: 'https://your-streaming-site.com',
       category: 'Web',
