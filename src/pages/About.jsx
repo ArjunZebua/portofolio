@@ -719,8 +719,7 @@ const About = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [inView, setInView] = useState(false);
 
-  // Fixed: Proper path to image in public folder
-  const profile = "/arjun1.jpg"; // This will work in production
+  const profile = "./arjun1.jpg";
 
   useEffect(() => {
     const canvas = document.getElementById('about-particles');
