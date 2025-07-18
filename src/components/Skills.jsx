@@ -205,6 +205,7 @@ import { SiMysql, SiJavascript, SiC, SiSwagger, SiNetlify, SiGit, SiGithub, SiDb
 import { BiLogoSpringBoot, BiLogoPostgresql } from "react-icons/bi";
 import { FaJava } from "react-icons/fa";
 
+
 const TechStack = () => {
   const techStackVariants = {
     initial: { opacity: 0, y: 50 },
