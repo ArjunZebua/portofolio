@@ -713,7 +713,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ProfileCard from '../components/ProfileCard';
+import ProfileCard from '../components/ProfileCard.jsx';
 
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(null);
