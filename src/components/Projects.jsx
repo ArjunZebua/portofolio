@@ -7,7 +7,6 @@ const Projects = () => {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef(null);
 
-  // Custom intersection observer hook
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

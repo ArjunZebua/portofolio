@@ -713,14 +713,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ProfileCard from '../components/ProfileCard'; // Fixed: Changed from 'Profilecard' to 'ProfileCard'
+import ProfileCard from '../components/ProfileCard';
+// import arjun1 from './public/arjun1.jpg';
 
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [inView, setInView] = useState(false);
 
-  // Fixed: Use public folder path instead of import
-  const profile = "/arjun1.jpg";
+  const profile = "./arjun1.jpg";
 
   useEffect(() => {
     const canvas = document.getElementById('about-particles');
