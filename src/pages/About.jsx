@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // /* eslint-disable no-unused-vars */
 // import React, { useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
@@ -710,17 +711,16 @@
 // export default About;
 
 
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProfileCard from '../components/ProfileCard';
-// import arjun1 from './public/arjun1.jpg';
 
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [inView, setInView] = useState(false);
 
-  const profile = "./arjun1.jpg";
+  // Fixed: Proper path to image in public folder
+  const profile = "/arjun1.jpg"; // This will work in production
 
   useEffect(() => {
     const canvas = document.getElementById('about-particles');
@@ -1038,8 +1038,8 @@ const About = () => {
             >
               <div className="w-full max-w-md mx-auto">
                 <ProfileCard
-                  avatarUrl={profile} // Fixed: Now using public folder path
-                  miniAvatarUrl={profile} // Fixed: Now using public folder path
+                  avatarUrl={profile}
+                  miniAvatarUrl={profile}
                   name="Arjun Zebua"
                   title="Frontend & Backend Developer"
                   handle="arjunzebua"
