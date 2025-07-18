@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 // components/Loader.jsx
-import React from 'react';
+// import React from 'react';
 import { motion } from 'framer-motion';
 
 const Loader = () => {

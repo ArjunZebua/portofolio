@@ -1,162 +1,347 @@
+// /* eslint-disable no-unused-vars */
+// import React, { useEffect } from 'react';
+// import { motion } from "framer-motion";
+// import { RiVercelLine, RiTailwindCssFill, RiReactjsLine } from "react-icons/ri";
+// import { SiThymeleaf, SiMysql, SiJavascript, SiC, SiSwagger, SiNetlify, SiGit, SiGithub } from "react-icons/si";
+// import { BiLogoSpringBoot, BiLogoPostgresql } from "react-icons/bi";
+// import { FaJava } from "react-icons/fa";
+
+
+// const TechStack = () => {
+//   useEffect(() => {
+//     const canvas = document.getElementById('tech-particles');
+//     if (!canvas) return;
+    
+//     const ctx = canvas.getContext('2d');
+//     let particles = [];
+    
+//     const resizeCanvas = () => {
+//       canvas.width = window.innerWidth;
+//       canvas.height = window.innerHeight;
+//       particles = [];
+//       initParticles();
+//     };
+    
+//     const initParticles = () => {
+//       const particleCount = Math.floor(canvas.width * canvas.height / 10000);
+      
+//       for (let i = 0; i < particleCount; i++) {
+//         particles.push({
+//           x: Math.random() * canvas.width,
+//           y: Math.random() * canvas.height,
+//           radius: Math.random() * 2 + 1,
+//           speedX: (Math.random() - 0.5) * 0.5,
+//           speedY: (Math.random() - 0.5) * 0.5,
+//           opacity: Math.random() * 0.5 + 0.2
+//         });
+//       }
+//     };
+    
+//     const drawParticles = () => {
+//       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+//       for (let i = 0; i < particles.length; i++) {
+//         const p = particles[i];
+        
+//         ctx.beginPath();
+//         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+//         ctx.fillStyle = `rgba(100, 217, 255, ${p.opacity})`;
+//         ctx.fill();
+        
+//         for (let j = i + 1; j < particles.length; j++) {
+//           const p2 = particles[j];
+//           const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
+          
+//           if (distance < 100) {
+//             ctx.beginPath();
+//             ctx.moveTo(p.x, p.y);
+//             ctx.lineTo(p2.x, p2.y);
+//             ctx.strokeStyle = `rgba(100, 217, 255, ${0.2 * (1 - distance / 100)})`;
+//             ctx.lineWidth = 0.5;
+//             ctx.stroke();
+//           }
+//         }
+        
+//         p.x += p.speedX;
+//         p.y += p.speedY;
+        
+//         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+//         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+//       }
+      
+//       requestAnimationFrame(drawParticles);
+//     };
+    
+//     window.addEventListener('resize', resizeCanvas);
+//     resizeCanvas();
+//     drawParticles();
+    
+//     return () => window.removeEventListener('resize', resizeCanvas);
+//   }, []);
+
+//   const techStackVariants = {
+//     initial: { opacity: 0, y: 50 },
+//     animate: {
+//       opacity: 1,
+//       y: 0,
+//       transition: {
+//         duration: 0.6,
+//         ease: "easeOut",
+//         staggerChildren: 0.1,
+//       },
+//     },
+//   };
+
+//   const techVariants = {
+//     initial: { opacity: 0, scale: 0.8 },
+//     animate: {
+//       opacity: 1,
+//       scale: 1,
+//       transition: { duration: 0.6, ease: "easeOut" },
+//     },
+//     hover: { scale: 1.2, rotate: 5, transition: { duration: 0.3 } },
+//   };
+
+//   const rowVariants = {
+//     initial: { opacity: 0, y: 30 },
+//     animate: {
+//       opacity: 1,
+//       y: 0,
+//       transition: {
+//         duration: 0.6,
+//         ease: "easeOut",
+//         staggerChildren: 0.1,
+//       },
+//     },
+//   };
+
+//   // Organized into rows of 6-7 technologies
+//   const techRows = [
+//     [
+//       { icon: <FaJava size={40} />, name: "Java", color: "#F1502F" },
+//       { icon: <BiLogoSpringBoot size={40} />, name: "Spring Boot", color: "#6DB33F" },
+//       { icon: <SiThymeleaf size={40} />, name: "Thymeleaf", color: "#005F0F" },
+//       { icon: <RiReactjsLine size={40} />, name: "React", color: "#61DAFB" },
+//       { icon: <RiTailwindCssFill size={40} />, name: "Tailwind CSS", color: "#06B6D4" },
+//       { icon: <RiVercelLine size={40} />, name: "Vercel", color: "#ffffff" },
+//       { icon: <SiNetlify size={40} />, name: "Netlify", color: "#00AD9F" },
+//     ],
+//     [
+//       { icon: <BiLogoPostgresql size={40} />, name: "PostgreSQL", color: "#336791" },
+//       { icon: <SiMysql size={40} />, name: "MySQL", color: "#00758F" },
+//       { icon: <SiJavascript size={40} />, name: "JavaScript", color: "#F0DB4F" },
+//       { icon: <SiC size={40} />, name: "C", color: "#A8B9CC" },
+//       { icon: <SiSwagger size={40} />, name: "Swagger", color: "#6BA539" },
+//       { icon: <SiGit size={40} />, name: "Git", color: "#F1502F" },
+//       { icon: <SiGithub size={40} />, name: "GitHub", color: "#fff" },
+//     ]
+//   ];
+
+//   return (
+//     <div className="relative min-h-screen w-full flex items-center justify-center bg-gray-900">
+//       <canvas 
+//         id="tech-particles" 
+//         className="absolute inset-0 w-full h-full"
+//       />
+      
+//       <motion.section
+//         id="tech-stack"
+//         aria-label="Tech Stack section"
+//         className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+//         initial="initial"
+//         animate="animate"
+//         variants={techStackVariants}
+//       >
+//         <motion.h1
+//           variants={techVariants}
+//           className="text-center text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+//         >
+//           Tech <span className="text-gray-300">Stack</span>
+//         </motion.h1>
+
+//         <motion.p
+//           variants={techVariants}
+//           className="text-center text-lg text-gray-300 max-w-2xl mx-auto mb-12"
+//         >
+//           I build beautiful and functional web experiences with modern technologies.
+//           Let's create something amazing together.
+//         </motion.p>
+
+//         <div className="space-y-8">
+//           {techRows.map((row, rowIndex) => (
+//             <motion.div
+//               key={rowIndex}
+//               variants={rowVariants}
+//               className="flex flex-wrap items-center justify-center gap-4 sm:gap-6"
+//             >
+//               {row.map((tech, techIndex) => (
+//                 <motion.div
+//                   key={`${rowIndex}-${techIndex}`}
+//                   variants={techVariants}
+//                   whileHover="hover"
+//                   className="relative group rounded-2xl text-5xl sm:text-6xl border-2 border-cyan-400/50 p-3 shadow-md shadow-cyan-400/25 hover:bg-gradient-to-r hover:from-cyan-400/20 hover:to-blue-500/20 transition-all duration-300 backdrop-blur-sm bg-gray-900/50"
+//                   style={{ color: tech.color }}
+//                   aria-label={`Technology: ${tech.name}`}
+//                 >
+//                   {tech.icon}
+//                   <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-gray-700">
+//                     {tech.name}
+//                   </span>
+//                 </motion.div>
+//               ))}
+//             </motion.div>
+//           ))}
+//         </div>
+//       </motion.section>
+//     </div>
+//   );
+// };
+
+// export default TechStack;
 /* eslint-disable no-unused-vars */
-// components/Skills.jsx
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import { RiVercelLine, RiTailwindCssFill, RiReactjsLine } from "react-icons/ri";
+import { SiMysql, SiJavascript, SiC, SiSwagger, SiNetlify, SiGit, SiGithub, SiDbeaver } from "react-icons/si";
+import { BiLogoSpringBoot, BiLogoPostgresql } from "react-icons/bi";
+import { FaJava } from "react-icons/fa";
 
-const Skills = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
+const TechStack = () => {
+  const techStackVariants = {
+    initial: { opacity: 0, y: 50 },
+    animate: {
       opacity: 1,
+      y: 0,
       transition: {
-        delayChildren: 0.3,
+        duration: 0.6,
+        ease: "easeOut",
         staggerChildren: 0.1,
       },
     },
   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
+  const createTechVariants = (index) => ({
+    initial: { opacity: 0, scale: 0.8 },
+    animate: {
       opacity: 1,
-      transition: { duration: 0.5 },
+      scale: 1,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut",
+        delay: index * 0.1
+      },
+    },
+    hover: { 
+      scale: 1.15,
+      y: -8,
+      transition: { 
+        duration: 0.3,
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }
+    }
+  });
+
+  const rowVariants = {
+    initial: { opacity: 0, y: 30 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+        staggerChildren: 0.15,
+      },
     },
   };
 
-  const frontendSkills = [
-    { name: 'HTML5 & CSS3', percentage: 95 },
-    { name: 'JavaScript', percentage: 90 },
-    { name: 'React.js', percentage: 85 },
-    { name: 'Next.js', percentage: 80 },
-    { name: 'Tailwind CSS', percentage: 90 },
-    { name: 'TypeScript', percentage: 75 },
+  const techRows = [
+    [
+      { icon: <FaJava size={50} />, name: "Java", color: "#F1502F" },
+      { icon: <BiLogoSpringBoot size={50} />, name: "Spring Boot", color: "#6DB33F" },
+      { icon: <RiReactjsLine size={50} />, name: "React", color: "#61DAFB" },
+      { icon: <RiTailwindCssFill size={50} />, name: "Tailwind CSS", color: "#06B6D4" },
+      { icon: <RiVercelLine size={50} />, name: "Vercel", color: "#ffffff" },
+    ],
+    [
+      { icon: <BiLogoPostgresql size={50} />, name: "PostgreSQL", color: "#336791" },
+      { icon: <SiMysql size={50} />, name: "MySQL", color: "#00758F" },
+      { icon: <SiJavascript size={50} />, name: "JavaScript", color: "#F0DB4F" },
+      { icon: <SiC size={50} />, name: "C", color: "#A8B9CC" },
+      { icon: <SiSwagger size={50} />, name: "Swagger", color: "#6BA539" },
+      { icon: <SiGit size={50} />, name: "Git", color: "#F1502F" },
+      { icon: <SiGithub size={50} />, name: "GitHub", color: "#fff" },
+      { icon: <SiNetlify size={50} />, name: "Netlify", color: "#00AD9F" },
+      { icon: <SiDbeaver size={50} />, name: "DBeaver", color: "#FF6600" },
+    ]
   ];
-
-  const backendSkills = [
-    { name: 'Node.js', percentage: 90 },
-    { name: 'Java', percentage: 95 },
-    { name: 'Express.js', percentage: 95 },
-    // { name: 'MongoDB', percentage: 85 },
-    { name: 'PostgreSQL', percentage: 85 },
-    { name: 'RESTful APIs', percentage: 90 },
-    { name: 'MySQL', percentage: 90 },
-  ];
-
-  const toolsSkills = [
-    { name: 'Git & GitHub', icon: 'github' },
-    { name: 'VS Code', icon: 'code' },
-    { name: 'Postman', icon: 'postman' },
-    { name: 'Supabase', icon: 'supabase' },
-    { name: 'Vercel', icon: 'cloud' },
-  ];
-
-  const SkillBar = ({ skill, delay }) => (
-    <motion.div
-      variants={itemVariants}
-      className="mb-6"
-    >
-      <div className="flex justify-between mb-1">
-        <span className="font-medium">{skill.name}</span>
-        <span className="text-cyan-400">{skill.percentage}%</span>
-      </div>
-      <div className="w-full bg-gray-700 rounded-full h-2.5">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${skill.percentage}%` } : { width: 0 }}
-          transition={{ duration: 1, delay: delay }}
-          className="h-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
-        ></motion.div>
-      </div>
-    </motion.div>
-  );
-
-  const ToolCard = ({ tool }) => (
-    <motion.div
-      variants={itemVariants}
-      className="bg-gray-800 border border-gray-700 rounded-lg p-4 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1 group"
-    >
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 text-white group-hover:scale-110
-                transition-all duration-300">
-          <i className={`devicon-${tool.icon}-plain text-xl`}></i>
-        </div>
-        <span className="font-medium">{tool.name}</span>
-      </div>
-    </motion.div>
-  );
 
   return (
-    <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-slate-900">
+      
+      {/* Main content */}
+      <motion.section
+        id="tech-stack"
+        aria-label="Tech Stack section"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12"
+        initial="initial"
+        animate="animate"
+        variants={techStackVariants}
       >
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">
-          My <span className="text-cyan-400">Skills</span>
-        </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Here are the technologies and tools I work with on a daily basis.
-        </p>
-      </motion.div>
-
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-      >
-        <div>
-          <h3 className="text-xl font-semibold mb-6 text-white flex items-center">
-            <span className="w-4 h-4 bg-cyan-400 rounded-full mr-2"></span>
-            Frontend Development
-          </h3>
-          {frontendSkills.map((skill, index) => (
-            <SkillBar key={skill.name} skill={skill} delay={index * 0.1} />
-          ))}
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold mb-6 text-white flex items-center">
-            <span className="w-4 h-4 bg-blue-500 rounded-full mr-2"></span>
-            Backend Development
-          </h3>
-          {backendSkills.map((skill, index) => (
-            <SkillBar 
-              key={skill.name} 
-              skill={skill} 
-              delay={(frontendSkills.length + index) * 0.1} 
-            />
-          ))}
-        </div>
-      </motion.div>
-
-      <div className="mt-16">
-        <h3 className="text-xl font-semibold mb-8 text-white text-center">
-          Tools & Technologies
-        </h3>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+        <motion.h1
+          variants={createTechVariants(0)}
+          className="text-center text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
         >
-          {toolsSkills.map((tool) => (
-            <ToolCard key={tool.name} tool={tool} />
+          Tech Stack
+        </motion.h1>
+
+        <motion.p
+          variants={createTechVariants(1)}
+          className="text-center text-lg text-gray-300 max-w-2xl mx-auto mb-12"
+        >
+          Technologies I work with to build modern web applications
+        </motion.p>
+
+        <div className="space-y-8">
+          {techRows.map((row, rowIndex) => (
+            <motion.div
+              key={rowIndex}
+              variants={rowVariants}
+              className="flex flex-wrap items-center justify-center gap-5 sm:gap-8"
+            >
+              {row.map((tech, techIndex) => (
+                <motion.div
+                  key={`${rowIndex}-${techIndex}`}
+                  variants={createTechVariants(rowIndex * 7 + techIndex)}
+                  whileHover="hover"
+                  className="relative group cursor-pointer"
+                  aria-label={`Technology: ${tech.name}`}
+                >
+                  {/* Icon tanpa background dan glow effect */}
+                  <div className="relative p-6 transition-all duration-300">
+                    {/* Icon dengan efek hover sederhana */}
+                    <div 
+                      style={{ color: tech.color }}
+                      className="relative z-10 opacity-90 group-hover:opacity-100 transition-all duration-300"
+                    >
+                      {tech.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Tooltip - also transparent */}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 px-4 py-2 bg-black/60 backdrop-blur-sm text-white text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 border border-white/10 shadow-lg">
+                    {tech.name}
+                    {/* Tooltip arrow */}
+                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-black/60 border-t border-l border-white/10 rotate-45"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           ))}
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </motion.section>
+    </div>
   );
 };
 
-export default Skills;
+export default TechStack;

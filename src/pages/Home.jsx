@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
-// components/Hero.jsx
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
-  // Particles background effect using canvas
   useEffect(() => {
     const canvas = document.getElementById('particles');
     if (!canvas) return;
@@ -46,7 +44,6 @@ const Hero = () => {
         ctx.fillStyle = `rgba(100, 217, 255, ${p.opacity})`;
         ctx.fill();
         
-        // Draw connections between close particles
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
@@ -61,11 +58,9 @@ const Hero = () => {
           }
         }
         
-        // Update position
         p.x += p.speedX;
         p.y += p.speedY;
         
-        // Bounce off edges
         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
       }
@@ -81,7 +76,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative h-screen flex items-center justify-center">
       <canvas id="particles" className="absolute inset-0" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -99,7 +94,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gray-100">
               Hi, I'm{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                 Arjun Zebua
@@ -119,15 +114,13 @@ const Hero = () => {
                 1000,
                 'Backend Developer',
                 1000,
-                'Mobile Developer',
-                1000,
                 'Web Developer',
                 1000
               ]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
-              className="text-gray-200"
+              className="text-gray-300"
             />
           </motion.div>
           
@@ -148,12 +141,12 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
-            <a 
+            {/* <a 
               href="#contact" 
               className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium rounded-lg transition-transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
             >
               Contact Me
-            </a>
+            </a> */}
             <a 
               href="#projects" 
               className="px-6 py-3 bg-transparent border-2 border-gray-600 text-white font-medium rounded-lg transition-all hover:border-cyan-400 hover:text-cyan-400"

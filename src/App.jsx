@@ -6,9 +6,11 @@ import Hero from './pages/Home';
 import About from './pages/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Contact from './pages/Profile';
+import ProfileCard from './components/Profilecard';
+// import Contact from './pages/Profile';
 import Loader from './components/Loader';
-import Lanyard from './components/Lanyard';
+// import Footer from './components/Footer';
+// import Lanyard from './components/Lanyard';
 // import TextPressure from './components/TextPressure'; 
 
 function App() {
@@ -116,7 +118,7 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Contact />
+            {/* <Contact /> */}
             {/* <Lanyard /> */}
           </motion.section>
         </AnimatePresence>
