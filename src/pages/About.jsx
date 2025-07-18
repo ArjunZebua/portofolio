@@ -726,7 +726,10 @@ const About = () => {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    if (!ctx) return; // Add context check
+    
     let particles = [];
+    let animationId;
     
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -751,6 +754,8 @@ const About = () => {
     };
     
     const drawParticles = () => {
+      if (!ctx || !canvas) return;
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       for (let i = 0; i < particles.length; i++) {
@@ -785,14 +790,23 @@ const About = () => {
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
       }
       
-      requestAnimationFrame(drawParticles);
+      animationId = requestAnimationFrame(drawParticles);
     };
     
-    window.addEventListener('resize', resizeCanvas);
+    const handleResize = () => {
+      resizeCanvas();
+    };
+    
+    window.addEventListener('resize', handleResize);
     resizeCanvas();
     drawParticles();
     
-    return () => window.removeEventListener('resize', resizeCanvas);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
   }, []);
 
   // Intersection observer simulation
@@ -974,17 +988,24 @@ const About = () => {
 
   // Handler for ProfileCard contact button
   const handleContactClick = () => {
-    // You can add your contact functionality here
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    try {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch (error) {
+      console.error('Error scrolling to contact section:', error);
     }
   };
   
   return (
-    <div className="">
-      {/* Animated Particles Background - now matching Hero section */}
-      <canvas id="about-particles" className="absolute inset-0 pointer-events-none" />
+    <div className="relative min-h-screen bg-gray-900">
+      {/* Animated Particles Background */}
+      <canvas 
+        id="about-particles" 
+        className="absolute inset-0 pointer-events-none" 
+        style={{ zIndex: 1 }}
+      />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <motion.div
@@ -1005,7 +1026,7 @@ const About = () => {
             </motion.h2>
             
             <motion.div className="overflow-hidden">
-              <motion.h3 className="text-3xl md:text-4xl font-semibold flex justify-center space-x-1">
+              <motion.h3 className="text-3xl md:text-4xl font-semibold flex justify-center space-x-1 text-white">
                 {animateText.split('').map((char, index) => (
                   <motion.span
                     key={index}
@@ -1059,7 +1080,7 @@ const About = () => {
               className="md:col-span-3 space-y-6"
             >
               <motion.h3 
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold text-white"
                 variants={textRevealVariants}
               >
                 I'm <motion.span 
@@ -1169,7 +1190,7 @@ const About = () => {
             className="pt-20"
           >
             <motion.h3 
-              className="text-2xl font-semibold mb-14 text-center"
+              className="text-2xl font-semibold mb-14 text-center text-white"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -1278,7 +1299,7 @@ const About = () => {
           </motion.div>
           
           {/* Subtle background accent */}
-          <motion.div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none opacity-20">
+          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none opacity-20">
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
@@ -1308,7 +1329,7 @@ const About = () => {
                 }}
               />
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
