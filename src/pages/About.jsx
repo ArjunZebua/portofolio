@@ -714,102 +714,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProfileCard from '../components/ProfileCard.jsx';
+import profileImage from '../assets/arjun1.jpg';
 
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [inView, setInView] = useState(false);
 
-  const profile = "./arjun1.jpg";
+  const profile = profileImage;
 
-  useEffect(() => {
-    const canvas = document.getElementById('about-particles');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return; // Add context check
-    
-    let particles = [];
-    let animationId;
-    
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      particles = [];
-      initParticles();
-    };
-    
-    const initParticles = () => {
-      const particleCount = Math.floor(canvas.width * canvas.height / 10000);
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 1,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.2
-        });
-      }
-    };
-    
-    const drawParticles = () => {
-      if (!ctx || !canvas) return;
-      
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(100, 217, 255, ${p.opacity})`;
-        ctx.fill();
-        
-        // Draw connections between close particles
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
-          
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(100, 217, 255, ${0.2 * (1 - distance / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-        
-        // Update position
-        p.x += p.speedX;
-        p.y += p.speedY;
-        
-        // Bounce off edges
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-      }
-      
-      animationId = requestAnimationFrame(drawParticles);
-    };
-    
-    const handleResize = () => {
-      resizeCanvas();
-    };
-    
-    window.addEventListener('resize', handleResize);
-    resizeCanvas();
-    drawParticles();
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, []);
-
-  // Intersection observer simulation
   useEffect(() => {
     const timer = setTimeout(() => setInView(true), 200);
     return () => clearTimeout(timer);
@@ -986,7 +898,6 @@ const About = () => {
   const letterVariants = createLetterVariants();
   const animateText = "Professional Profile";
 
-  // Handler for ProfileCard contact button
   const handleContactClick = () => {
     try {
       const contactSection = document.getElementById('contact');
@@ -997,16 +908,14 @@ const About = () => {
       console.error('Error scrolling to contact section:', error);
     }
   };
+
+  const handleImageError = (e) => {
+    console.error('Image failed to load:', profile);
+    e.target.src = './assets/arjun1.jpg';
+  };
   
   return (
-    <div className="relative min-h-screen bg-gray-900">
-      {/* Animated Particles Background */}
-      <canvas 
-        id="about-particles" 
-        className="absolute inset-0 pointer-events-none" 
-        style={{ zIndex: 1 }}
-      />
-      
+    <div className="relative min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <motion.div
           initial="hidden"
@@ -1014,7 +923,6 @@ const About = () => {
           variants={containerVariants}
           className="space-y-16"
         >
-          {/* Section Header with Letter Animation */}
           <motion.div variants={itemVariants} className="text-center mb-14">
             <motion.h2 
               className="text-sm uppercase tracking-widest text-cyan-400 mb-3 font-medium"
@@ -1051,7 +959,6 @@ const About = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
-            {/* ========== PROFILE CARD WITH ANIMATION ========== */}
             <motion.div 
               className="md:col-span-2 relative"
               variants={fadeInUpVariants}
@@ -1069,11 +976,11 @@ const About = () => {
                   enableTilt={true}
                   showBehindGradient={true}
                   onContactClick={handleContactClick}
+                  onImageError={handleImageError}
                   className="profile-card-about"
                 />
               </div>
             </motion.div>
-            {/* ========== END PROFILE CARD ========== */}
 
             <motion.div 
               variants={itemVariants} 
@@ -1114,7 +1021,6 @@ const About = () => {
                 to deliver projects that exceed expectations.
               </motion.p>
               
-              {/* Elegant Stats Cards */}
               <motion.div className="grid grid-cols-2 gap-4 md:gap-6 pt-4">
                 {stats.map((stat, index) => (
                   <motion.div 
@@ -1122,7 +1028,7 @@ const About = () => {
                     custom={index}
                     variants={statCardVariants}
                     whileHover="hover"
-                    className="bg-gray-800/40 p-4 rounded-lg backdrop-blur-sm border border-gray-700/50 transform transition-all duration-300"
+                    className="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 transform transition-all duration-300"
                   >
                     <motion.h4 
                       className="text-2xl md:text-3xl font-semibold text-gray-200"
@@ -1157,7 +1063,6 @@ const About = () => {
                 ))}
               </motion.div>
 
-              {/* Professional CTA Button */}
               <motion.div variants={textRevealVariants}>
                 <motion.a 
                   href="#contact"
@@ -1184,7 +1089,6 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* Professional Experience Timeline */}
           <motion.div 
             variants={fadeInUpVariants}
             className="pt-20"
@@ -1215,7 +1119,7 @@ const About = () => {
                     custom={index}
                     variants={dotVariants}
                     whileHover="hover"
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 border border-cyan-500/30 shadow-md md:mx-auto shrink-0 z-10"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-cyan-500/30 shadow-md md:mx-auto shrink-0 z-10"
                   >
                     <motion.svg 
                       className="w-4 h-4 text-cyan-400" 
@@ -1234,11 +1138,11 @@ const About = () => {
                   </motion.div>
                   
                   <motion.div 
-                    className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-800/30 p-6 rounded-md shadow-md border border-cyan-500/20 transition-all duration-300"
+                    className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/10 backdrop-blur-md p-6 rounded-md shadow-md border border-cyan-500/20 transition-all duration-300"
                     whileHover={{
                       boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",
                       borderColor: "rgba(100, 217, 255, 0.3)",
-                      backgroundColor: "rgba(31, 41, 55, 0.4)"
+                      backgroundColor: "rgba(255, 255, 255, 0.15)"
                     }}
                   >
                     <div className="flex items-center justify-between mb-3">
@@ -1276,7 +1180,6 @@ const About = () => {
                       {exp.description}
                     </motion.p>
                     
-                    {/* Professional skills tags */}
                     <motion.div 
                       className="flex flex-wrap gap-2 mt-3"
                       initial={{ opacity: 0 }}
@@ -1297,43 +1200,9 @@ const About = () => {
               ))}
             </div>
           </motion.div>
-          
-          {/* Subtle background accent */}
-          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none opacity-20">
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl"
-                initial={{ 
-                  x: Math.random() * 100 - 50 + "%", 
-                  y: Math.random() * 100 + "%",
-                  opacity: Math.random() * 0.3 + 0.1
-                }}
-                animate={{ 
-                  x: [
-                    Math.random() * 100 - 50 + "%", 
-                    Math.random() * 100 - 50 + "%", 
-                    Math.random() * 100 - 50 + "%"
-                  ],
-                  y: [
-                    Math.random() * 100 + "%", 
-                    Math.random() * 100 + "%", 
-                    Math.random() * 100 + "%"
-                  ],
-                  opacity: [0.1, 0.2, 0.1]
-                }}
-                transition={{ 
-                  repeat: Infinity, 
-                  duration: 15 + Math.random() * 20, 
-                  ease: "linear" 
-                }}
-              />
-            ))}
-          </div>
         </motion.div>
       </div>
 
-      {/* CSS for ProfileCard styling */}
       <style jsx>{`
         .profile-card-about {
           width: 100%;
@@ -1353,6 +1222,11 @@ const About = () => {
           height: 100%;
           object-fit: cover;
           border-radius: 16px;
+          transition: all 0.3s ease;
+        }
+        
+        .profile-card-about .pc-card:hover .avatar {
+          filter: grayscale(100%);
         }
         
         .profile-card-about .pc-user-info {

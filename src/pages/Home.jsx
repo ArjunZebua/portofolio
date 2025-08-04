@@ -97,7 +97,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gray-100">
               Hi, I'm{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                Arjun Zebua
+                Arjun Developer
               </span>
             </h1>
           </motion.div>
