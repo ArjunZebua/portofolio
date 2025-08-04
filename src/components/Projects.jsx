@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FiGithub, FiExternalLink, FiCode, FiStar } from 'react-icons/fi';
 import Perpus from '../assets/Perpus.png';
 import Html from '../assets/Html.png';
+import Bag from  '../assets/Bag.png';
+import Api from  '../assets/Api.png';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -39,7 +41,6 @@ const Projects = () => {
       tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
       image: Html, // Menggunakan imported image
       github: 'https://github.com/ArjunZebua/ARJUN_ZEBUA.git',
-      // live: 'https://your-streaming-site.com',
       category: 'Web',
       featured: true
     },
@@ -50,39 +51,35 @@ const Projects = () => {
       tags: ['Node.js', 'React', 'Tailwind CSS'],
       image: Perpus, // Menggunakan imported image
       github: 'https://github.com/ArjunZebua/uas_arjun.git',
-      // live: 'https://eperpus-demo.com',
       category: 'Web',
       featured: true
     },
     {
       id: 3,
-      title: 'Mobile Task Manager',
-      description: 'Cross-platform productivity app with offline synchronization, collaborative features, and intelligent task prioritization for enhanced workflow management.',
-      tags: ['React Native', 'Firebase', 'Redux', 'AsyncStorage'],
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=center',
+      title: 'BigInstyle Girls',
+    description: 'BigInstyle Girls adalah website fashion untuk perempuan yang menyajikan berbagai koleksi tas bergaya modern. Dibuat dengan React dan Tailwind CSS, website ini menampilkan produk secara responsif dan elegan, cocok untuk brand fashion yang ingin tampil stylish dan profesional.',
+      tags: ['React','Tailwind CSS'],
+      image: Bag,
       github: 'https://github.com/yourusername/taskapp',
-      // live: 'https://expo.io/yourtaskapp',
       category: 'Web'
     },
     {
       id: 4,
-      title: 'AI Image Generator',
-      description: 'Cutting-edge web application leveraging artificial intelligence to generate stunning images from text prompts with advanced customization options.',
-      tags: ['React', 'OpenAI API', 'Node.js', 'Express'],
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center',
+      title: 'RESTful APIs',
+      description: 'API backend yang dikembangkan menggunakan C# untuk menangani data dengan efisien. Mendukung operasi CRUD, keamanan endpoint, dan cocok untuk proyek skala kecil hingga besar.',
+      tags: ['MySql','C#','.NET Core'],
+      image: Api,
       github: 'https://github.com/yourusername/ai-image-generator',
-      // live: 'https://your-ai-generator.com',
-      category: 'AI'
+      category: 'API'
     },
   ];
 
-  const filters = ['All', 'Web', 'AI']; // Menambahkan filter yang hilang
+  const filters = ['All', 'Web',];
 
   const filteredProjects = activeFilter === 'All' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
-  // Animation styles
   const getAnimationStyle = (index, isVisible) => {
     if (!isVisible) return { opacity: 0, transform: 'translateY(30px) scale(0.95)' };
     
