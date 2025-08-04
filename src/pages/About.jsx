@@ -187,16 +187,16 @@ const About = () => {
   const letterVariants = createLetterVariants();
   const animateText = "Professional Profile";
 
-  const handleContactClick = () => {
-    try {
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    } catch (error) {
-      console.error('Error scrolling to contact section:', error);
-    }
-  };
+  // const handleContactClick = () => {
+  //   try {
+  //     const contactSection = document.getElementById('contact');
+  //     if (contactSection) {
+  //       contactSection.scrollIntoView({ behavior: 'smooth' });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error scrolling to contact section:', error);
+  //   }
+  // };
 
   const handleImageError = (e) => {
     console.error('Image failed to load:', profile);
@@ -264,7 +264,7 @@ const About = () => {
                   showUserInfo={true}
                   enableTilt={true}
                   showBehindGradient={true}
-                  onContactClick={handleContactClick}
+                  // onContactClick={handleContactClick}
                   onImageError={handleImageError}
                   className="profile-card-about"
                 />
