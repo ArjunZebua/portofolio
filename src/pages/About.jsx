@@ -713,7 +713,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ProfileCard from '../components/ProfileCard.jsx';
+import ProfileCard from '../components/Profilecard.jsx';
 import profileImage from '../assets/arjun1.jpg';
 
 const About = () => {
